@@ -20,10 +20,15 @@ import javafx.scene.layout.StackPane;
  * @author user
  */
 public class ImageDisplay extends StackPane implements AbstractDisplay{
-    private final int w, h;    
+    private int w, h;    
     private ImageView imageView;
     private AbstractBitmap bitmap;
     private boolean imageMoveable;
+    
+    public ImageDisplay()
+    {
+        this(null, true);
+    }
         
     public ImageDisplay(AbstractBitmap bitmap)
     {
@@ -32,10 +37,11 @@ public class ImageDisplay extends StackPane implements AbstractDisplay{
     
     public ImageDisplay(AbstractBitmap bitmap, boolean moveable)
     {
-        this.w = bitmap.getWidth(); this.h = bitmap.getHeight();
-        this.bitmap = bitmap;
         this.imageView = new ImageView();
-        this.imageView.setImage(bitmap.getImage());
+    
+        if(bitmap != null)        
+            imageFill(bitmap);
+                
         getChildren().add(imageView);
         this.imageMoveable = moveable;
         
@@ -64,9 +70,10 @@ public class ImageDisplay extends StackPane implements AbstractDisplay{
     }
     
     @Override
-    public void imageFill(AbstractBitmap bitmap)
+    public final void imageFill(AbstractBitmap bitmap)
     {
         this.imageView.setImage(bitmap.getImage());
+        this.w = bitmap.getWidth(); this.h = bitmap.getHeight();
         this.bitmap = bitmap;
     }
     

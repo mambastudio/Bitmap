@@ -37,7 +37,7 @@ import javafx.scene.image.WritableImage;
 public class BitmapARGB extends AbstractBitmap
 {
     private final int w, h;
-    private final int[] data;
+    private int[] data;
      
     public BitmapARGB(int width, int height)
     {
@@ -110,6 +110,7 @@ public class BitmapARGB extends AbstractBitmap
 
     @Override
     public void writeColor(int[] color, int x, int y, int w, int h) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(color.length == data.length)
+            data = color;
     }
 }
