@@ -45,6 +45,24 @@ public class BitmapARGB extends AbstractBitmap
         this.data = new int[w * h];
     }
     
+    public BitmapARGB(int width, int height, boolean opaque)
+    {
+        this.w = width; this.h = height;
+        this.data = new int[w * h];
+        
+        if(!opaque)        
+            for(int i = 0; i<data.length; i++)
+                data[i] = ColorCoding.toInt8(0, 0, 0, 0);   
+        else
+            for(int i = 0; i<data.length; i++)
+                data[i] = ColorCoding.toInt8(1, 0, 0, 0);   
+    }
+    
+    public void reset()
+    {
+        
+    }
+    
     @Override
     public int getWidth() {
         return w;
