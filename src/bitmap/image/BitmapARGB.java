@@ -38,6 +38,7 @@ public class BitmapARGB extends AbstractBitmap
 {
     private final int w, h;
     private int[] data;
+    private boolean opaque = false;
      
     public BitmapARGB(int width, int height)
     {
@@ -50,17 +51,34 @@ public class BitmapARGB extends AbstractBitmap
         this.w = width; this.h = height;
         this.data = new int[w * h];
         
+        this.opaque = opaque;
+        
+        reset();   
+    }
+    
+    public final void reset()
+    {
         if(!opaque)        
             for(int i = 0; i<data.length; i++)
                 data[i] = ColorCoding.toInt8(0, 0, 0, 0);   
         else
             for(int i = 0; i<data.length; i++)
-                data[i] = ColorCoding.toInt8(1, 0, 0, 0);   
+                data[i] = ColorCoding.toInt8(1, 0, 0, 0); 
     }
     
-    public void reset()
+    public final void reset(boolean opaque)
     {
-        
+        if(!opaque)        
+            for(int i = 0; i<data.length; i++)
+                data[i] = ColorCoding.toInt8(0, 0, 0, 0);   
+        else
+            for(int i = 0; i<data.length; i++)
+                data[i] = ColorCoding.toInt8(1, 0, 0, 0);
+    }
+    
+    public void setOpaque(boolean opaque)
+    {
+        this.opaque = opaque;
     }
     
     @Override

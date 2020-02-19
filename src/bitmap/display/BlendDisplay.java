@@ -75,7 +75,21 @@ public class BlendDisplay extends StackPane implements AbstractDisplay {
         List<String> list = new ArrayList<>(imageArray.keySet());
         namePresent = list.stream().map((string) -> string.equals(name)).reduce(namePresent, (accumulator, _item) -> accumulator | _item);       
         if(namePresent)
-            Platform.runLater(() ->this.get(name).setImage(bitmap.getImage()));
+        {         
+            Platform.runLater(() ->{
+                this.get(name).setImage(bitmap.getImage());
+            });        
+        }
+        
+    }
+    
+    public int getImageWidth(String name) {        
+        return (int) get(name).imageProperty().get().getWidth();
+    }
+
+    
+    public int getImageHeight(String name) {
+        return (int) get(name).imageProperty().get().getWidth();
     }
         
     @Override
@@ -90,8 +104,12 @@ public class BlendDisplay extends StackPane implements AbstractDisplay {
     
     @Override
     public void imageFill(String name, AbstractBitmap bitmap) {
-        Platform.runLater(() -> this.get(name).setImage(bitmap.getImage()));
-    }  
+        Platform.setImplicitExit(false);
+        Platform.runLater(() -> {            
+            this.get(name).setImage(bitmap.getImage());
+        });
+        
+    } 
     
     public void mousePressed(MouseEvent e)
     {     
