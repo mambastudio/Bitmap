@@ -61,12 +61,12 @@ public interface AbstractDisplay {
          throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    default void imageFill(AbstractBitmap image)
+    default void imageFill(BitmapInterface image)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    default void imageFill(String name, AbstractBitmap image)
+    default void imageFill(String name, BitmapInterface image)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

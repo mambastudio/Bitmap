@@ -26,6 +26,7 @@ public class Color {
     public static final Color MAGENTA = new Color(1, 0, 1);
     public static final Color GRAY = new Color(0.5f, 0.5f, 0.5f);
     public static final Color LIGHTGRAY = new Color(0.8f);
+    public static final Color KHAKI = new Color(0.7647f, 0.6902f, 0.5686f);
 
     private static final float[] EXPONENT = new float[256];
 

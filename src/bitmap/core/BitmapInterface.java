@@ -31,16 +31,16 @@ import javafx.scene.image.Image;
  *
  * @author user
  */
-public abstract class AbstractBitmap {
-    protected static final float INV255 = 1.0f/255;
+public interface BitmapInterface {
+    public static final float INV255 = 1.0f/255;
     
-    public abstract int getWidth();
-    public abstract int getHeight();
-    public abstract Color readColor(int x, int y);
-    public abstract float readAlpha(int x, int y);
-    public abstract void writeColor(Color color, float alpha, int x, int y); 
-    public abstract void writeColor(Color color, float alpha, int x, int y, int w, int h);
-    public abstract void writeColor(Color[] color, float[] alpha, int x, int y, int w, int h);
-    public abstract void writeColor(int[] color, int x, int y, int w, int h);
-    public abstract Image getImage();
+    public int getWidth();
+    public int getHeight();
+    default Color readColor(int x, int y){return null;}
+    default float readAlpha(int x, int y){return 0;}
+    default void writeColor(Color color, float alpha, int x, int y){}
+    default void writeColor(Color color, float alpha, int x, int y, int w, int h){}
+    default void writeColor(Color[] color, float[] alpha, int x, int y, int w, int h){}
+    default void writeColor(int[] color, int x, int y, int w, int h){}
+    default Image getImage(){return null;}
 }

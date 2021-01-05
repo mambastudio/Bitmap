@@ -140,11 +140,11 @@ public class ColorCoding
     
     public static byte[] toByte(float value1, float value2, float value3, float value4)
     {
-        byte[] b = new byte[3];
+        byte[] b = new byte[4];
         b[0] = toByte(value1);
         b[1] = toByte(value2);
         b[2] = toByte(value3);
-        b[3] = toByte(value3);
+        b[3] = toByte(value4);
         return b;
     }
     
@@ -181,6 +181,46 @@ public class ColorCoding
         buf[2] = f * (((rgbe >> 8) & 0xFF) + 0.5f);
         
         return buf;
+    }
+    
+    //from sunflow renderer, radiance format rgbe to float r,g,b
+    public static byte[] rgbeToBytes(int rgbe) 
+    {        
+        float f = EXPONENT[rgbe & 0xFF];
+        float r = f * ((rgbe >>> 24) + 0.5f);
+        float g = f * (((rgbe >> 16) & 0xFF) + 0.5f);
+        float b = f * (((rgbe >> 8) & 0xFF) + 0.5f);
+        
+        return toByte(r, g, b);
+    }
+    
+    public static byte[] rgbeToBytes(int rgbe, double gamma) 
+    {        
+        float f = EXPONENT[rgbe & 0xFF];
+        float r = f * ((rgbe >>> 24) + 0.5f);
+        float g = f * (((rgbe >> 16) & 0xFF) + 0.5f);
+        float b = f * (((rgbe >> 8) & 0xFF) + 0.5f);
+        
+        r = (float) Math.pow(r, 1./gamma);
+        g = (float) Math.pow(g, 1./gamma);
+        b = (float) Math.pow(b, 1./gamma);
+        
+        return toByte(r, g, b);
+    }
+    
+    public static int rgbeToArgb(int rgbe, double gamma)
+    {
+        float f = EXPONENT[rgbe & 0xFF];
+        float r = f * ((rgbe >>> 24) + 0.5f);
+        float g = f * (((rgbe >> 16) & 0xFF) + 0.5f);
+        float b = f * (((rgbe >> 8) & 0xFF) + 0.5f);
+        
+        //gamma 2.2
+        r = (float) Math.pow(r, 1./gamma);
+        g = (float) Math.pow(g, 1./gamma);
+        b = (float) Math.pow(b, 1./gamma);
+        
+        return toIntARGB(r, g, b, 1);
     }
     
     public static int toIntRGBE(float r, float g, float b) 
@@ -280,5 +320,10 @@ public class ColorCoding
             buf[i] = toInt8(alpha[i], color[i].r, color[i].g, color[i].b);
         }
         return buf;
+    }
+    
+    public static int toIntARGB(float r, float g, float b, float a)
+    {
+        return toInt8(a, r, g, b);
     }
 }

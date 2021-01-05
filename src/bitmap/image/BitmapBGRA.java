@@ -25,17 +25,17 @@ package bitmap.image;
 
 import bitmap.Color;
 import bitmap.ColorCoding;
-import bitmap.core.AbstractBitmap;
 import java.nio.ByteBuffer;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import javafx.scene.image.WritablePixelFormat;
+import bitmap.core.BitmapInterface;
 
 /**
  *
  * @author user
  */
-public class BitmapBGRA extends AbstractBitmap
+public class BitmapBGRA implements BitmapInterface
 {
     private final byte[] data;
     private final int w, h;
@@ -119,8 +119,4 @@ public class BitmapBGRA extends AbstractBitmap
             }
     }
 
-    @Override
-    public void writeColor(int[] color, int x, int y, int w, int h) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

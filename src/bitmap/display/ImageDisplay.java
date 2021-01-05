@@ -6,13 +6,13 @@
 package bitmap.display;
 
 import bitmap.Color;
-import bitmap.core.AbstractBitmap;
 import bitmap.core.AbstractDisplay;
 import bitmap.util.ZoomUtility;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.StackPane;
+import bitmap.core.BitmapInterface;
 
 
 /**
@@ -22,7 +22,7 @@ import javafx.scene.layout.StackPane;
 public class ImageDisplay extends StackPane implements AbstractDisplay{
     private int w, h;    
     private ImageView imageView;
-    private AbstractBitmap bitmap;
+    private BitmapInterface bitmap;
     private boolean imageMoveable;
     
     public ImageDisplay()
@@ -30,14 +30,15 @@ public class ImageDisplay extends StackPane implements AbstractDisplay{
         this(null, true);
     }
         
-    public ImageDisplay(AbstractBitmap bitmap)
+    public ImageDisplay(BitmapInterface bitmap)
     {
         this(bitmap, true);
     }
     
-    public ImageDisplay(AbstractBitmap bitmap, boolean moveable)
+    public ImageDisplay(BitmapInterface bitmap, boolean moveable)
     {
         this.imageView = new ImageView();
+        
     
         if(bitmap != null)        
             imageFill(bitmap);
@@ -70,7 +71,7 @@ public class ImageDisplay extends StackPane implements AbstractDisplay{
     }
     
     @Override
-    public final void imageFill(AbstractBitmap bitmap)
+    public final void imageFill(BitmapInterface bitmap)
     {
         this.imageView.setImage(bitmap.getImage());
         this.w = bitmap.getWidth(); this.h = bitmap.getHeight();

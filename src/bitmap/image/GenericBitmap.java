@@ -24,14 +24,14 @@
 package bitmap.image;
 
 import bitmap.Color;
-import bitmap.core.AbstractBitmap;
 import javafx.scene.image.Image;
+import bitmap.core.BitmapInterface;
 
 /**
  *
  * @author user
  */
-public class GenericBitmap extends AbstractBitmap
+public class GenericBitmap implements BitmapInterface
 {
     private final int w, h;
     private final Color[] color;

@@ -25,17 +25,17 @@ package bitmap.image;
 
 import bitmap.Color;
 import bitmap.ColorCoding;
-import bitmap.core.AbstractBitmap;
 import java.nio.ByteBuffer;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelFormat;
 import javafx.scene.image.WritableImage;
+import bitmap.core.BitmapInterface;
 
 /**
  *
  * @author user
  */
-public class BitmapRGB extends AbstractBitmap
+public class BitmapRGB implements BitmapInterface
 {
     private final int w, h;
     private final byte[] data;

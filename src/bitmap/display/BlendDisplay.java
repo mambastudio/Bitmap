@@ -5,7 +5,6 @@
  */
 package bitmap.display;
 
-import bitmap.core.AbstractBitmap;
 import bitmap.core.AbstractDisplay;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,11 +14,14 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
+import bitmap.core.BitmapInterface;
 
 /**
  *
@@ -69,7 +71,7 @@ public class BlendDisplay extends StackPane implements AbstractDisplay {
         return imageArray.get(name);
     }
     
-    public void set(String name, AbstractBitmap bitmap)
+    public void set(String name, BitmapInterface bitmap)
     {
         boolean namePresent = false;
         List<String> list = new ArrayList<>(imageArray.keySet());
@@ -103,13 +105,14 @@ public class BlendDisplay extends StackPane implements AbstractDisplay {
     }
     
     @Override
-    public void imageFill(String name, AbstractBitmap bitmap) {
+    public void imageFill(String name, BitmapInterface bitmap) {
         Platform.setImplicitExit(false);
-        Platform.runLater(() -> {            
+        Platform.runLater(() -> {      
             this.get(name).setImage(bitmap.getImage());
         });
         
     } 
+    
     
     public void mousePressed(MouseEvent e)
     {     
@@ -137,5 +140,18 @@ public class BlendDisplay extends StackPane implements AbstractDisplay {
         }
         this.mouseLocX = currentLocX;
         this.mouseLocY = currentLocY;                    
-    }    
+    }   
+    
+    public Bounds getScreenBounds(String name)
+    {
+        return get(name).localToScreen(get(name).getBoundsInLocal());
+    }
+    
+    public Point2D getDragOverXY(DragEvent e, String name)
+    {
+        Bounds screenBound = getScreenBounds(name);
+        double x = e.getScreenX() - screenBound.getMinX();
+        double y = e.getScreenY() - screenBound.getMinY();
+        return new Point2D(x, y);
+    }
 }

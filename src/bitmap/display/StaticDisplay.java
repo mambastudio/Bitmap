@@ -5,7 +5,6 @@
  */
 package bitmap.display;
 
-import bitmap.core.AbstractBitmap;
 import bitmap.core.AbstractDisplay;
 import java.util.HashMap;
 import javafx.application.Platform;
@@ -18,6 +17,7 @@ import javafx.scene.effect.BlendMode;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
+import bitmap.core.BitmapInterface;
 
 /**
  *
@@ -54,7 +54,7 @@ public class StaticDisplay extends StackPane implements AbstractDisplay
         return imageArray.get(name);
     }
     
-    public void imageFillSelection(AbstractBitmap selectionBitmap)
+    public void imageFillSelection(BitmapInterface selectionBitmap)
     {
         Platform.runLater(() ->this.get("selection").setImage(selectionBitmap.getImage()));
     }
@@ -76,12 +76,12 @@ public class StaticDisplay extends StackPane implements AbstractDisplay
     }
     
     @Override
-    public void imageFill(AbstractBitmap bitmap) {
+    public void imageFill(BitmapInterface bitmap) {
         Platform.runLater(() -> this.get("base").setImage(bitmap.getImage()));
     }
     
     @Override
-    public void imageFill(String name, AbstractBitmap bitmap) {
+    public void imageFill(String name, BitmapInterface bitmap) {
         Platform.runLater(() -> this.get(name).setImage(bitmap.getImage()));
     }    
     

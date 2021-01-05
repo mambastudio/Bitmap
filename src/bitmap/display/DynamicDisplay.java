@@ -5,7 +5,6 @@
  */
 package bitmap.display;
 
-import bitmap.core.AbstractBitmap;
 import bitmap.core.AbstractDisplay;
 import javafx.application.Platform;
 import javafx.beans.property.DoubleProperty;
@@ -17,6 +16,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
+import bitmap.core.BitmapInterface;
 
 /**
  *
@@ -34,7 +34,7 @@ public class DynamicDisplay extends StackPane implements AbstractDisplay
     public DoubleProperty translationDepth = new SimpleDoubleProperty();
     public ObjectProperty<Point2D> translationXY = new SimpleObjectProperty<>();
         
-    AbstractBitmap tile;
+    BitmapInterface tile;
     
     int x, y, w = 1, h = 1;
     GraphicsContext gc;
@@ -157,7 +157,7 @@ public class DynamicDisplay extends StackPane implements AbstractDisplay
     }
     
     @Override
-    public void imageFill(AbstractBitmap bitmap) {
+    public void imageFill(BitmapInterface bitmap) {
         this.tile = bitmap;
         imagePaint();
     }
