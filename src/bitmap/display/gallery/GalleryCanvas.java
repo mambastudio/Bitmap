@@ -38,13 +38,14 @@ import javafx.scene.paint.Color;
 public final class GalleryCanvas extends Canvas {
     public enum ImageType{
         JPG("jpg"),
+        JPG1("JPG"),
         PNG("png"),
         BMP("bmp"),
         HDR("hdr"),
         GIF("gif");
         
 
-        private final String value;
+        public final String value;
 
         private ImageType(String value) {
             this.value = value;

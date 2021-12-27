@@ -9,6 +9,7 @@ import bitmap.display.ImageDisplay;
 import bitmap.image.BitmapRGB;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.BorderPane;
@@ -23,9 +24,12 @@ public class StaticDisplayController implements Initializable {
     @FXML
     BorderPane pane;
     
+    
      
     private ImageDisplay display;
     private BitmapRGB bitmap;
+    
+   
     
     /**
      * Initializes the controller class.
@@ -42,4 +46,9 @@ public class StaticDisplayController implements Initializable {
         pane.setCenter(display); 
     }    
     
+    
+    public void reset(ActionEvent e)
+    {
+        display.reset();
+    }
 }

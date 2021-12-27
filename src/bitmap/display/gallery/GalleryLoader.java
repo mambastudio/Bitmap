@@ -7,7 +7,9 @@ package bitmap.display.gallery;
 
 import bitmap.display.gallery.GalleryCanvas.ImageType;
 import static bitmap.display.gallery.GalleryCanvas.ImageType.JPG;
+import static bitmap.display.gallery.GalleryCanvas.ImageType.JPG1;
 import static bitmap.display.gallery.GalleryCanvas.ImageType.PNG;
+import bitmap.display.gallery.util.TaskInterface;
 import java.io.File;
 import java.nio.file.Path;
 import javafx.geometry.Insets;
@@ -37,12 +39,15 @@ public class GalleryLoader extends VBox{
     private final Button addButton = new Button("add");
     private final Button clearButton = new Button("clear");
     
-    private ImageType[] types = {JPG, PNG};
+    private ImageType[] types = {JPG, JPG1, PNG};
+    
+    private TaskInterface launchDialog;
     
     public GalleryLoader(int width, int height)
     {
         stackPane = new StackPane();
         galleryCanvas = new GalleryCanvas(width, height);
+        galleryCanvas.setStyle("-fx-background-color: transparent;");
         
         scrollBarY = new ScrollBar();
         scrollBarY.setOrientation(Orientation.VERTICAL);
@@ -108,13 +113,20 @@ public class GalleryLoader extends VBox{
             clear();
         });
         
-        addButton.setOnAction(e->{
-            
+        addButton.setOnAction(e->{            
+            launchDialog.run();            
+        });
+        
+        launchDialog = ()->{
             File selectedDirectory = directoryChooser.showDialog(this.getScene().getWindow());
             if(selectedDirectory != null)
                 addFolderImages(selectedDirectory.toPath());
-            
-        });
+        };
+    }
+    
+    public void setLaunchDialog(TaskInterface task)
+    {
+        this.launchDialog = task;
     }
     
     public void clear()

@@ -8,6 +8,7 @@ package bitmap.util;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
@@ -31,6 +32,15 @@ public class ImageUtility {
     public static Image stringToImage(String string, int width, int height)
     {
         return stringToImage(string, Font.font("Verdana", 20), Color.DARKGREY, width, height);
+    }
+    
+    public static Image generateImage(double red, double green, double blue, double opacity) {
+        WritableImage img = new WritableImage(1, 1);
+        PixelWriter pw = img.getPixelWriter();
+
+        Color color = Color.color(red, green, blue, opacity);
+        pw.setColor(0, 0, color);
+        return img ;
     }
     
     public static Image stringToImage(String string, Font font, Color stringColor, int width, int height)

@@ -5,9 +5,12 @@
  */
 package bitmap.image;
 
+import bitmap.Color;
 import bitmap.ColorCoding;
 import bitmap.core.BitmapInterface;
 import java.nio.IntBuffer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelFormat;
 import javafx.scene.image.WritableImage;
@@ -100,6 +103,77 @@ public class BitmapRGBE implements BitmapInterface
         return dataByte;
     }
     
+    public float[] getLuminanceArray()
+    {
+        float lumMax = 0;
+        float[] lum = new float[w * h];
+        for (int y=0; y<h; y++) {
+            for (int x=0; x<w; x++) {
+                int index = x + w*y;
+                float[] floatRGB = ColorCoding.toFloatRGBE(rgbeData[index]);
+                Color color = new Color(floatRGB[0], floatRGB[1], floatRGB[2]);
+                lum[index] = color.luminance();
+                if(lum[index] > lumMax)
+                    lumMax = lum[index];
+            }
+        }
+        System.out.println("maximum luminance " +lumMax);
+        return lum;
+    }
+    
+    public float[] getScaledLuminanceArray(int w2, int h2)
+    {
+        float lumMax = 0;
+        
+        //scale the image to the defined w2, h2
+        //http://tech-algorithm.com/articles/nearest-neighbor-image-scaling/
+        int w1 = w; int h1 = h;
+        float[] temp = new float[w2*h2] ;
+        double x_ratio = w1/(double)w2 ;
+        double y_ratio = h1/(double)h2 ;
+        double px, py ; 
+        
+        for (int i=0;i<h2;i++) {
+            for (int j=0;j<w2;j++) {
+                px = Math.floor(j*x_ratio) ;
+                py = Math.floor(i*y_ratio) ;
+                float[] floatRGB = ColorCoding.toFloatRGBE(rgbeData[(int)((py*w1)+px)]);
+                Color color = new Color(floatRGB[0], floatRGB[1], floatRGB[2]);
+                temp[(i*w2)+j] = color.luminance();
+                if(color.luminance() > lumMax)
+                    lumMax = color.luminance();
+            }
+        }
+        System.out.println("maximum luminance32 " +lumMax);
+        return temp;
+    }
+    
+    public int getRGBE(int index)
+    {
+        try{
+            return rgbeData[index];
+        }
+        catch(ArrayIndexOutOfBoundsException ex)
+        {
+            Logger.getLogger(BitmapRGBE.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;        
+    }
+    
+    public int getRGBE(int x, int y)
+    {
+        try{
+            int index = x + w*y;
+            return rgbeData[index];
+        }
+        catch(ArrayIndexOutOfBoundsException ex)
+        {
+            Logger.getLogger(BitmapRGBE.class.getName()).log(Level.SEVERE, null, ex);        
+        }
+        return 0;        
+        
+    }
+        
     ////https://stackoverflow.com/questions/39408845/how-to-get-width-height-of-displayed-image-in-javafx-imageview
     private int[] getScaledSize(int width, int height)
     {

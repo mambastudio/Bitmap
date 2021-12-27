@@ -230,10 +230,10 @@ public class ImageContainer {
     }
 
     //preserving width and height ratio
-    private double getTargetWidth(ImageMetaData metadata, double maxHeight) {
+    private double getTargetWidth(ImageMetaData metadata, double maxWidth) {
         int nativeWidth = metadata.getWidth();
         int nativeHeight = metadata.getHeight();
-        double targetHeight = getTargetHeight(maxHeight);
+        double targetHeight = getTargetHeight(maxWidth);
         double scalingFactor = nativeHeight / targetHeight; 
         return nativeWidth / scalingFactor;
     }

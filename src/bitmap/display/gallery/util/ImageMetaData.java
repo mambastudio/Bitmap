@@ -25,7 +25,7 @@ public class ImageMetaData {
     private ImageMetaData() {
 
     }
-
+    
     public ImageMetaData(File file) {
         if(!file.isFile())
             throw new UnsupportedOperationException("file not valid");
@@ -45,14 +45,36 @@ public class ImageMetaData {
             Logger.getLogger(ImageMetaData.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+     /**
+     *  
+     * -> aw/(ow/oh) = ah
+     * -> ow/oh = aspect ratio = r
+     * -> hence 
+     * -> aw/r = ah
+     * 
+     * @param targetWidth
+     * @param targetHeight
+     * @return 
+     */
+    public double[] getAdjustedSize(double targetWidth, double targetHeight)
+    {
+        double oldWidth = width;
+        double oldHeight = height;
+        
+        // smaller ratio will ensure that the image fits in the view
+        double ratio = Math.min(targetWidth / oldWidth, targetHeight / oldHeight);
+
+        double newWidth = (int)(oldWidth * ratio);
+        double newHeight = (int)(oldHeight * ratio);
+        
+        return new double[]{newWidth, newHeight};        
+    }
 
     private void processStream(InputStream is) throws IOException {
         int c1 = is.read();
         int c2 = is.read();
         int c3 = is.read();
-        
-        
-
+                
         mimeType = null;
         width = height = -1;
 
@@ -61,7 +83,9 @@ public class ImageMetaData {
             width = readInt(is,2,false);
             height = readInt(is,2,false);
             mimeType = "image/gif";
-        } else if (c1 == 0xFF && c2 == 0xD8) { // JPG
+        } else if (c1 == 0xFF && (c2 == 0xD8 ||
+                                  c2 == 0xC4)) { // JPG
+           // System.out.println("kubafu");
             while (c3 == 255) {
                 int marker = is.read();
                 int len = readInt(is,2,true);
@@ -87,7 +111,7 @@ public class ImageMetaData {
             is.skip(2);
             height = readInt(is,2,false);
             mimeType = "image/bmp";
-        } else if (c1 == '#' && c2 == '?' && c3 == 'R') { // GIF{
+        } else if (c1 == '#' && c2 == '?' && c3 == 'R') { // HDR
             is.mark(500); //
             int c4 = is.read();
             if(c4 == 'A')

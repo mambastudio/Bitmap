@@ -154,4 +154,13 @@ public class BlendDisplay extends StackPane implements AbstractDisplay {
         double y = e.getScreenY() - screenBound.getMinY();
         return new Point2D(x, y);
     }
+    
+    
+    public Point2D getMouseOverXY(MouseEvent e, String name)
+    {
+        Bounds screenBound = getScreenBounds(name);
+        double x = e.getScreenX() - screenBound.getMinX();
+        double y = e.getScreenY() - screenBound.getMinY();
+        return new Point2D(x, y);
+    }
 }

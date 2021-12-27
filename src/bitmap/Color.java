@@ -13,7 +13,7 @@ import java.nio.ByteBuffer;
  *
  * @author user
  */
-public class Color {
+public class Color implements Cloneable {
     public float r, g, b;
     
     public static final Color BLACK = new Color(0, 0, 0);
