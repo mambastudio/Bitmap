@@ -124,6 +124,7 @@ public final class ImageDisplay extends StackPane implements AbstractDisplay{
         this.w = bitmap.getWidth(); this.h = bitmap.getHeight();
             
         this.bitmap = bitmap;
+        
     }
     
     @Override

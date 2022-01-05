@@ -36,11 +36,28 @@ public interface BitmapInterface {
     
     public int getWidth();
     public int getHeight();
-    default Color readColor(int x, int y){return null;}
-    default float readAlpha(int x, int y){return 0;}
-    default void writeColor(Color color, float alpha, int x, int y){}
-    default void writeColor(Color color, float alpha, int x, int y, int w, int h){}
-    default void writeColor(Color[] color, float[] alpha, int x, int y, int w, int h){}
-    default void writeColor(int[] color, int x, int y, int w, int h){}
-    default Image getImage(){return null;}
+    default Color readColor(int x, int y){
+        throw new UnsupportedOperationException("Invalid operation");
+    }
+    default float readAlpha(int x, int y){
+        throw new UnsupportedOperationException("Invalid operation");
+    }
+    default void writeColor(Color color, float alpha, int x, int y){
+        throw new UnsupportedOperationException("Invalid operation");
+    }
+    default void writeColor(Color color, float alpha, int x, int y, int w, int h){
+        throw new UnsupportedOperationException("Invalid operation");
+    }
+    default void writeColor(Color[] color, float[] alpha, int x, int y, int w, int h){
+        throw new UnsupportedOperationException("Invalid operation");
+    }
+    default void writeColor(int[] color, int x, int y, int w, int h){
+        throw new UnsupportedOperationException("Invalid operation");
+    }
+    default Image getImage(){
+        throw new UnsupportedOperationException("Invalid operation");
+    }
+    default void clear(){
+        throw new UnsupportedOperationException("Invalid operation");
+    }
 }

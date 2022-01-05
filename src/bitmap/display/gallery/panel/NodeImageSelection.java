@@ -10,10 +10,10 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.ContextMenu;
-import javafx.scene.control.MenuItem;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -106,6 +106,8 @@ public class NodeImageSelection {
                 event.consume();
                 return;
             }
+            
+            
             dragContext.mouseAnchorX = event.getX();
             dragContext.mouseAnchorY = event.getY();
 
@@ -280,9 +282,12 @@ public class NodeImageSelection {
         }
         
         public void add( NodeImage node) {
-
-            selection.add( node);
-            node.addSelection();
+            //when images are loading... there is conflict of selection
+            Platform.runLater(()->{
+                selection.add( node);
+                node.addSelection();
+            });
+            
         }
 
         public void remove(NodeImage node) {

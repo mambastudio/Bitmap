@@ -123,6 +123,13 @@ public class Color implements Cloneable {
         }
     }
     
+    public void set(float r, float g, float b)
+    {
+        this.r = r;
+        this.g = g;
+        this.b = b;
+    }
+    
     public float getMax()
     {
         return ColorUtility.max(r, g, b);
@@ -240,6 +247,13 @@ public class Color implements Cloneable {
         return new Color(r / s,
                          g / s,
                          b / s);
+    }
+    
+    public final void divAssign(float s)
+    {
+        r /= s;
+        g /= s;
+        b /= s;
     }
 
     public final Color mul(Color c)

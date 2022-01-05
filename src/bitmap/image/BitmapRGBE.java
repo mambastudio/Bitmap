@@ -148,6 +148,13 @@ public class BitmapRGBE implements BitmapInterface
         return temp;
     }
     
+    public Color getColor(int index)
+    {
+        Color color = new Color();
+        color.setRGBE(getRGBE(index));
+        return color;
+    }
+    
     public int getRGBE(int index)
     {
         try{

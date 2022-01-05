@@ -60,7 +60,7 @@ public final class NodeImage extends Group {
                         
                         //tooltip
                         Tooltip.install(this, new Tooltip(file.getName()));
-                        //System.out.println(getMaxX());
+                        
                     });           
             });
 
