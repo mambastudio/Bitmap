@@ -177,7 +177,7 @@ public class RGBSpace {
     {
         float w;
 
-        /* Amount of white needed is w = - min(0, *r, *g, *b) */
+        /* Amount of white needed is a = - min(0, *r, *g, *b) */
 
         w = (0 < c.r) ? 0 : c.r;
         w = (w < c.g) ? w : c.g;

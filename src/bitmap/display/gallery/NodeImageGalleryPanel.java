@@ -3,13 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bitmap.display.gallery.panel;
+package bitmap.display.gallery;
 
+import bitmap.display.gallery.panel.NodeImage;
 import bitmap.display.gallery.panel.NodeImageSelection.SelectionType;
+import bitmap.display.gallery.panel.RectImageContainer;
 import java.io.File;
+import java.io.FilenameFilter;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Supplier;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.ScrollPane;
@@ -22,8 +28,16 @@ import javafx.scene.layout.Pane;
  * @author user
  */
 public class NodeImageGalleryPanel extends ScrollPane{
+    //type of images of interest
+    public static enum ImageType{JPG, JPEG, PNG, HDR};
+    
+    //layout and display
     private final RectImageContainer container;
     private final Pane pane;
+    
+    //filter list
+    private final Set<ImageType> imageSet = new LinkedHashSet<>(Arrays.asList(ImageType.values()));
+    private FilenameFilter filter = null;
     
     public NodeImageGalleryPanel()
     {
@@ -44,6 +58,22 @@ public class NodeImageGalleryPanel extends ScrollPane{
                     container.clearSelection();
             }
         });
+        
+        filter = (dir, name)->{
+            for(ImageType type : imageSet)
+            {                
+                //both have to be tested in lower case to avoid issues type capitalisation
+                if(name.toLowerCase().endsWith(type.name().toLowerCase()))
+                    return true;
+            }
+            return false;
+        };
+    }
+    
+    public void setImageFilter(ImageType... types)
+    {
+        imageSet.clear();
+        imageSet.addAll(Arrays.asList(types));
     }
     
     public void addImagesFromDirectory(Path pathFolder)
@@ -102,18 +132,7 @@ public class NodeImageGalleryPanel extends ScrollPane{
     private File[] getFileImages(Path pathFolder)
     {        
         //Filter list of files
-        File[] files = pathFolder.toFile().listFiles((dir, name)->{
-            if(name.toLowerCase().endsWith(".jpg"))
-                return true;
-            else if(name.toLowerCase().endsWith(".jpeg"))
-                return true;
-            else if(name.toLowerCase().endsWith(".png"))
-                return true;
-            else if(name.toLowerCase().endsWith(".hdr"))
-                return true;
-            return false;
-        });   
-        
+        File[] files = pathFolder.toFile().listFiles(filter);           
         return files;        
     } 
 }

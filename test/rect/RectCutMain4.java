@@ -5,14 +5,12 @@
  */
 package rect;
 
-import static bitmap.display.gallery.GalleryCanvas.ImageType.HDR;
 import bitmap.display.gallery.HDRImageLoaderFactory;
-import bitmap.display.gallery.panel.NodeImageGalleryPanel;
-import bitmap.display.gallery.panel.NodeImageSelection;
+import bitmap.display.gallery.NodeImageGalleryPanel;
+import static bitmap.display.gallery.NodeImageGalleryPanel.ImageType.HDR;
 import java.io.File;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -21,7 +19,6 @@ import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
@@ -49,6 +46,7 @@ public class RectCutMain4 extends Application {
         root.setPadding(new Insets(3, 0, 0, 0));
         
         panel = new NodeImageGalleryPanel();
+        panel.setImageFilter(HDR);
         
         ContextMenu menu = new ContextMenu();
         MenuItem item = new MenuItem("Delete");

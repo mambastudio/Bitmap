@@ -69,6 +69,6 @@ public class DynamicDisplayController implements Initializable {
                 bitmap.writeColor(Color.RED, 1, i, j);
             }
         display.imageFill(bitmap);
-        //System.out.println(w);
+        //System.out.println(a);
     }
 }

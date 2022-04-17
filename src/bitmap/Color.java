@@ -65,18 +65,7 @@ public class Color implements Cloneable {
         this.g = zeroCeiling(g);
         this.b = zeroCeiling(b);
     }
-    
-    public Color(float r, float g, float b, float a)
-    {
-        this.r = r;
-        this.g = g;
-        this.b = b;
-                
-        this.r = zeroCeiling(r);
-        this.g = zeroCeiling(g);
-        this.b = zeroCeiling(b);
-    }
-    
+        
     public Color(double r, double g, double b)
     {
         this((float)r, (float)g, (float)b);
@@ -128,6 +117,17 @@ public class Color implements Cloneable {
         this.r = r;
         this.g = g;
         this.b = b;
+    }
+    
+    public void set(float r, float g, float b, float a)
+    {
+        this.r = r;
+        this.g = g;
+        this.b = b;
+        
+        this.r = zeroCeiling(r);
+        this.g = zeroCeiling(g);
+        this.b = zeroCeiling(b);
     }
     
     public float getMax()
@@ -382,7 +382,7 @@ public class Color implements Cloneable {
 
         return (ia << 24) | (ir << 16) | (ig << 8) | ib;
     }
-
+    
     public final int toRGBE() {
         // encode the color into 32bits while preserving HDR using Ward's RGBE
         // technique
@@ -439,8 +439,7 @@ public class Color implements Cloneable {
                0.072169f * b;
     }
     
-    @Override
-    public Color clone()
+    public Color copy()
     {
         return new Color(r, g, b);
     }
