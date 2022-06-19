@@ -36,15 +36,15 @@ public class PannableDisplay extends ScrollPane implements AbstractDisplay{
         this.setContent(content);
         
         content.setOnScroll(evt->{
-            if (evt.isControlDown()) {
-                evt.consume();
-                
-                // calculate adjustment of scroll position (pixels)
-                Point2D posInZoomTarget = this.imageView.parentToLocal(group.parentToLocal(new Point2D(evt.getX(), evt.getY())));
-                
-                final double zoomFactor = evt.getDeltaY() > 0 ? 1.2 : 1 / 1.2;
-                zoom(zoomFactor, posInZoomTarget);
-            }
+            
+            evt.consume();
+
+            // calculate adjustment of scroll position (pixels)
+            Point2D posInZoomTarget = this.imageView.parentToLocal(group.parentToLocal(new Point2D(evt.getX(), evt.getY())));
+
+            final double zoomFactor = evt.getDeltaY() > 0 ? 1.2 : 1 / 1.2;
+            zoom(zoomFactor, posInZoomTarget);
+           
         });
         
         this.setPannable(true);
@@ -59,6 +59,7 @@ public class PannableDisplay extends ScrollPane implements AbstractDisplay{
             content.setMinHeight(newBounds.getHeight());
         });
 
+        this.getStylesheets().add("bitmap/display/pannable.css");        
     }
     
     public void setImage(Image image)
@@ -94,6 +95,7 @@ public class PannableDisplay extends ScrollPane implements AbstractDisplay{
         setVvalue((valY + adjustment.getY()) / (groupBounds.getHeight() - viewportBounds.getHeight()));
     }  
     
+    //as action event (attach to a button)
     public void toFitView(ActionEvent e)
     {
         toFitView();
@@ -108,6 +110,7 @@ public class PannableDisplay extends ScrollPane implements AbstractDisplay{
         zoom(scale * 0.90, Point2D.ZERO);
     }
     
+    //as action event (attach to a button)
     public void toOriginSize(ActionEvent e)
     {
         toOriginSize();
@@ -115,15 +118,10 @@ public class PannableDisplay extends ScrollPane implements AbstractDisplay{
     
     public void toOriginSize()
     {
-        Bounds viewportBounds = group.getLayoutBounds();    
-        double iWidth = imageView.getImage().getWidth();
-        double iHeight = imageView.getImage().getHeight();
-        
-        double scale = Math.min(iWidth/viewportBounds.getWidth(), iHeight/viewportBounds.getHeight());
-        
-        zoom(scale, Point2D.ZERO);
+        imageView.setScaleX(1);
+        imageView.setScaleY(1);
     }
-    
+     
      @Override
     public final void imageFill(BitmapInterface bitmap)
     {        

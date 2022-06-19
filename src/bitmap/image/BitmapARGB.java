@@ -59,20 +59,20 @@ public class BitmapARGB implements BitmapInterface
     public final void reset()
     {
         if(!opaque)        
-            for(int i = 0; i<data.length; i++)
+            for(int i = 0; i<(w * h); i++)
                 data[i] = ColorCoding.toInt8(0, 0, 0, 0);   
         else
-            for(int i = 0; i<data.length; i++)
+            for(int i = 0; i<(w * h); i++)
                 data[i] = ColorCoding.toInt8(1, 0, 0, 0); 
     }
     
     public final void reset(boolean opaque)
     {
         if(!opaque)        
-            for(int i = 0; i<data.length; i++)
+            for(int i = 0; i<(w * h); i++)
                 data[i] = ColorCoding.toInt8(0, 0, 0, 0);   
         else
-            for(int i = 0; i<data.length; i++)
+            for(int i = 0; i<(w * h); i++)
                 data[i] = ColorCoding.toInt8(1, 0, 0, 0);
     }
     
@@ -146,7 +146,7 @@ public class BitmapARGB implements BitmapInterface
 
     @Override
     public void writeColor(int[] color, int x, int y, int w, int h) {
-        if(color.length == data.length)
+        if(color.length >= data.length)
             data = color;
     }
 }

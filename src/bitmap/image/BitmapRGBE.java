@@ -117,7 +117,7 @@ public class BitmapRGBE implements BitmapInterface
                     lumMax = lum[index];
             }
         }
-        System.out.println("maximum luminance " +lumMax);
+        
         return lum;
     }
     
