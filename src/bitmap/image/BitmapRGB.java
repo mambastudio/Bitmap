@@ -72,7 +72,7 @@ public class BitmapRGB implements BitmapInterface
     @Override
     public void writeColor(Color color, float alpha, int x, int y) {
         int index = index(x, y); 
-        byte[] buf = ColorCoding.toByte(color.r, color.g, color.b);
+        byte[] buf = ColorCoding.toByte(color.r, color.g, color.b);        
         data[index+0] = buf[0];
         data[index+1] = buf[1];
         data[index+2] = buf[2];
