@@ -32,6 +32,11 @@ import bitmap.util.ColorUtility;
 /**
  *
  * @author user
+ * 
+ * https://www.fourmilab.ch/documents/specrend/
+ * https://www.scratchapixel.com/lessons/digital-imaging/colors/color-space
+ * https://cs.haifa.ac.il/hagit/courses/ist/Lectures/Demos/ColorApplet2/t_convert.html
+ * 
  */
 public class RGBSpace {
     /*                             XYZ_TO_RGB

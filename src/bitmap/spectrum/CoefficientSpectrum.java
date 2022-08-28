@@ -5,6 +5,7 @@
  */
 package bitmap.spectrum;
 
+import bitmap.Spectrum;
 import bitmap.util.ColorUtility;
 import java.util.Arrays;
 

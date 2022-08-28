@@ -3,15 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bitmap.spectrum.surface;
-
-import bitmap.Spectrum;
+package bitmap.spectrum;
 
 /**
  *
  * @author user
- * @param <S>
  */
-public interface Fresnel<S extends Spectrum> {
-    public S evaluateSpectrum(float cosI);    
+public class xyYSpectrum {
+    
 }

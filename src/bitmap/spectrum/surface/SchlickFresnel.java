@@ -5,7 +5,7 @@
  */
 package bitmap.spectrum.surface;
 
-import bitmap.spectrum.Spectrum;
+import bitmap.Spectrum;
 
 /**
  *

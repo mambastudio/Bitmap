@@ -81,7 +81,7 @@ public class CIE1931
     {
         for(int i = 300; i<= 825; i+=5)
         {
-            System.out.println( String.format("(%.9f, %.9f, %.9f)", xFit_1931(i), yFit_1931(i), zFit_1931(i)));
+            System.out.println( String.format("(%.12f, %.12f, %.12f)", xFit_1931(i), yFit_1931(i), zFit_1931(i)));
         }
     }
 }
