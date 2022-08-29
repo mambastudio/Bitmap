@@ -5,6 +5,7 @@
  */
 package test;
 
+import bitmap.spectrum.CIESpectrum;
 import bitmap.spectrum.RGBSpectrum;
 
 /**
@@ -14,10 +15,13 @@ import bitmap.spectrum.RGBSpectrum;
 public class TestSpectrum {
     public static void main(String... args)
     {
-        RGBSpectrum spec = new RGBSpectrum(0.2f, 0.3f, 0.9f);
-        RGBSpectrum specN = spec.newInstance().setTo(new RGBSpectrum(1, 1, 1));
-        System.out.println(spec);
+        CIESpectrum spectrum = new CIESpectrum();
         
-        System.out.println(specN);
+        int lambda = 380;
+        for(int i= 0; i<81; i++)
+        {
+            System.out.println(spectrum.xBar(lambda)+ " " +spectrum.yBar(lambda)+ " " +spectrum.zBar(lambda));
+            lambda += 5;
+        }
     }
 }

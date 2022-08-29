@@ -5,8 +5,6 @@
  */
 package bitmap.spectrum;
 
-import bitmap.Spectrum;
-
 /**
  *
  * @author user
@@ -44,15 +42,9 @@ public class RGBSpectrum extends CoefficientSpectrum<RGBSpectrum>{
         return c[2];
     }
     
-    @Override
-    public RGBSpectrum convert(Spectrum s2) {
-        if(s2 instanceof RGBSpectrum)
-            return (RGBSpectrum)s2;
-        throw new UnsupportedOperationException("format spectrum not recognised");
-    }
 
     @Override
-    public float y() {
+    public float Y() {
         return 0.212671f * r() + 
                0.715160f * g() +
                0.072169f * b();

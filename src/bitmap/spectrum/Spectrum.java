@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bitmap;
+package bitmap.spectrum;
 
 /**
  *
@@ -42,16 +42,18 @@ public interface Spectrum<T extends Spectrum> extends Cloneable {
     public T pow(float n);   
     public T pow(Spectrum s2);
     public T exp();
-    public T expAssign();        
-    public Spectrum convert(Spectrum s2);
+    public T expAssign();            
+    default RGBSpectrum getRGBSpectrum() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     /** Converts this spectrum to the XYZ y coefficient.
      * <p>
-     * The y coordinate is closely related to luminance, which measures
-     * the perceived brightness of a color.
+ The Y coordinate is closely related to luminance, which measures
+ the perceived brightness of a color.
      *
-     * @return the y coefficient of the spectrum.
+     * @return the Y coefficient of the spectrum.
      */
-    public float y();
+    public float Y();
 
 }

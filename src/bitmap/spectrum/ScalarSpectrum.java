@@ -5,8 +5,6 @@
  */
 package bitmap.spectrum;
 
-import bitmap.Spectrum;
-
 /**
  *
  * @author user
@@ -34,12 +32,7 @@ public class ScalarSpectrum extends CoefficientSpectrum<RGBSpectrum>{
     }
 
     @Override
-    public Spectrum convert(Spectrum s2) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public float y() {
+    public float Y() {
         return getValue();
     }
     

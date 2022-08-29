@@ -5,7 +5,7 @@
  */
 package bitmap.spectrum.surface;
 
-import bitmap.Spectrum;
+import bitmap.spectrum.Spectrum;
 import static bitmap.util.ColorUtility.clamp;
 import static java.lang.Math.abs;
 import static java.lang.Math.max;

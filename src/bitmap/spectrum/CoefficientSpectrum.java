@@ -5,7 +5,6 @@
  */
 package bitmap.spectrum;
 
-import bitmap.Spectrum;
 import bitmap.util.ColorUtility;
 import java.util.Arrays;
 
@@ -56,7 +55,7 @@ public abstract class CoefficientSpectrum<T extends CoefficientSpectrum> impleme
     }
     
     public boolean isDarkerThan(CoefficientSpectrum s2) {
-        return y() < s2.y();
+        return Y() < s2.Y();
     }
     
     public boolean HasNaNs() {
