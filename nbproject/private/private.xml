@@ -3,21 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/user/Documents/GitHub/Bitmap/src/bitmap/CIE1931.java</file>
-            <file>file:/C:/Users/user/Documents/GitHub/Bitmap/src/bitmap/spectrum/surface/ConductorFresnel.java</file>
-            <file>file:/C:/Users/user/Documents/GitHub/Bitmap/src/bitmap/RGBSpace.java</file>
-            <file>file:/C:/Users/user/Documents/GitHub/Bitmap/src/bitmap/spectrum/CIESpectrum.java</file>
-            <file>file:/C:/Users/user/Documents/GitHub/Bitmap/src/bitmap/ColorSystem.java</file>
-            <file>file:/C:/Users/user/Documents/GitHub/Bitmap/src/bitmap/ColorCoding.java</file>
-            <file>file:/C:/Users/user/Documents/GitHub/Bitmap/src/bitmap/spectrum/surface/SchlickFresnel.java</file>
-            <file>file:/C:/Users/user/Documents/GitHub/Bitmap/src/bitmap/spectrum/CoefficientSpectrum.java</file>
-            <file>file:/C:/Users/user/Documents/GitHub/Bitmap/src/bitmap/spectrum/RGBSpectrum.java</file>
-            <file>file:/C:/Users/user/Documents/GitHub/Bitmap/test/test/TestSpectrum.java</file>
-            <file>file:/C:/Users/user/Documents/GitHub/Bitmap/src/bitmap/spectrum/surface/DielectricFresnel.java</file>
-            <file>file:/C:/Users/user/Documents/GitHub/Bitmap/src/bitmap/RectBound.java</file>
-            <file>file:/C:/Users/user/Documents/GitHub/Bitmap/src/bitmap/SpectralCurve.java</file>
-            <file>file:/C:/Users/user/Documents/GitHub/Bitmap/src/bitmap/spectrum/D65Spectrum.java</file>
-            <file>file:/C:/Users/user/Documents/GitHub/Bitmap/src/bitmap/spectrum/XYZSpectrum.java</file>
+            <file>file:/C:/Users/jmburu/Documents/GitHub/Bitmap/test/test/TestNK.java</file>
         </group>
     </open-files>
 </project-private>

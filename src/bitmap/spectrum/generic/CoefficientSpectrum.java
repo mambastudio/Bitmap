@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bitmap.spectrum;
+package bitmap.spectrum.generic;
 
+import bitmap.spectrum.generic.Spectrum;
 import bitmap.util.ColorUtility;
 import java.util.Arrays;
 
@@ -13,7 +14,7 @@ import java.util.Arrays;
  * @author user
  * @param <T>
  */
-public abstract class CoefficientSpectrum<T extends CoefficientSpectrum> implements Spectrum<CoefficientSpectrum> {
+public abstract class CoefficientSpectrum<T extends CoefficientSpectrum> implements Spectrum<T >{
     public float[] c;
     
     public CoefficientSpectrum(int nSamples) {
@@ -293,40 +294,40 @@ public abstract class CoefficientSpectrum<T extends CoefficientSpectrum> impleme
     }
 
     @Override
-    public CoefficientSpectrum exp() {
+    public T exp() {
         CoefficientSpectrum ret = copy();
         for (int i = 0; i < c.length; ++i) {
             ret.c[i] = (float) Math.exp(c[i]);
         }
         assert (!ret.HasNaNs());
-        return ret;
+        return (T) ret;
     }
     @Override
-    public CoefficientSpectrum expAssign() {
+    public T expAssign() {
         for (int i = 0; i < c.length; ++i) {
             c[i] = (float) Math.exp(c[i]);
         }
         assert (!HasNaNs());
-        return this;
+        return (T) this;
     }
 
     @Override
-    public CoefficientSpectrum copy() {
+    public T copy() {
         try {
             CoefficientSpectrum that = (CoefficientSpectrum) super.clone();
             that.c = Arrays.copyOf(c, c.length);
-            return that;
+            return (T) that;
         } catch (CloneNotSupportedException ex) {
             throw new InternalError(ex);
         }
     }
     
     @Override
-    public CoefficientSpectrum newInstance() {
+    public T newInstance() {
         try {
             CoefficientSpectrum that = (CoefficientSpectrum) super.clone();           
             that.c = new float[c.length];
-            return that;
+            return (T) that;
         } catch (CloneNotSupportedException ex) {
             throw new InternalError(ex);
         }

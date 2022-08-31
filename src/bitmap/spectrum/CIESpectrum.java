@@ -8,52 +8,29 @@ package bitmap.spectrum;
 import static bitmap.CIE1931.xFit_1931;
 import static bitmap.CIE1931.yFit_1931;
 import static bitmap.CIE1931.zFit_1931;
+import bitmap.spectrum.generic.TristimulusSpectrum;
 
 /**
  *
  * @author user
  */
-public class CIESpectrum extends CoefficientSpectrum<CIESpectrum>{
+public class CIESpectrum extends TristimulusSpectrum<CIESpectrum>{
     
     public CIESpectrum()
     {
-        //5nm from 380nm to 780nm, meaning 81 slots * 3 color matching function channel
-        super(81 * 3);
-        
-        //x color matching function
-        int index = 0;
-        for (int i = 380; i <= 780; i+=5)
+        super();
+        //x color matching function        
+        for (int lambda = 380; lambda <= 780; lambda+=5)
         {
-            float x = xFit_1931(i);
-            float y = yFit_1931(i);
-            float z = zFit_1931(i);
+            float x = xFit_1931(lambda);
+            float y = yFit_1931(lambda);
+            float z = zFit_1931(lambda);
             
-            c[index + 0  ] = x;
-            c[index + 81 ] = y;
-            c[index + 162] = z;
-            index++;
+            this.setTristimulusFromLambda(lambda, x, y, z);
         }
+        
+        calculateY();
     }
     
-    public double xBar(int lambda)
-    {
-        return c[(lambda - 380) / 5];
-    }
-    
-    public double yBar(int lambda)
-    {
-        return c[(lambda - 380) / 5 + 81] ;
-    }
-    
-    public double zBar(int lambda)
-    {
-        return c[(lambda - 380) / 5  + 162];
-    }
-    
-
-    @Override
-    public float Y() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+        
 }

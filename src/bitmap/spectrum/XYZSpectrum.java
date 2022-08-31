@@ -5,16 +5,24 @@
  */
 package bitmap.spectrum;
 
+import bitmap.spectrum.generic.CoefficientSpectrum;
+
 /**
  *
  * @author user
  */
-public class XYZSpectrum extends CoefficientSpectrum<XYZSpectrum>{
+public final class XYZSpectrum extends CoefficientSpectrum<XYZSpectrum>{
         
     public XYZSpectrum(RGBSpectrum spectrum)
     {
         super(3);
         convertRGBtoXYZ(spectrum);
+    }
+    
+    public XYZSpectrum(float X, float Y, float Z)
+    {
+        super(3);
+        this.setTo(X, Y, Z);
     }
         
     protected void convertRGBtoXYZ(RGBSpectrum spectrum)
@@ -80,4 +88,10 @@ public class XYZSpectrum extends CoefficientSpectrum<XYZSpectrum>{
         return convertXYZtoRGB();
     }
     
+    
+    @Override
+    public String toString()
+    {
+        return "X " +X()+ " Y " +Y()+ " Z " +Z();
+    }
 }

@@ -5,6 +5,8 @@
  */
 package bitmap.spectrum;
 
+import bitmap.spectrum.generic.CoefficientSpectrum;
+
 /**
  *
  * @author user
@@ -64,6 +66,6 @@ public class RGBSpectrum extends CoefficientSpectrum<RGBSpectrum>{
     @Override
     public String toString()
     {
-        return "r " +r()+ " g " +g()+ " b " +b();
+        return "r " +r()*255+ " g " +g()*255+ " b " +b()*255;
     }
 }
