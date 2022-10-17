@@ -45,7 +45,7 @@ public class TestPannable extends Application {
            ,new FileChooser.ExtensionFilter("PNG", "*.png")
        );
         
-        File file = new File("C:\\Users\\user\\Pictures\\Screenshot 2020-10-16 182155.jpg");
+        File file = new File("C:\\Users\\jmburu\\Desktop\\Path weighting Noise Reduction.png");
         Image image = openFileImage(file); 
         
         
