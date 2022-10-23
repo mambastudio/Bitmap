@@ -77,9 +77,13 @@ public class PannableDisplay extends ScrollPane implements AbstractDisplay{
         // calculate pixel offsets from [0, 1] range
         double valX = getHvalue() * (groupBounds.getWidth() - viewportBounds.getWidth());
         double valY = getVvalue() * (groupBounds.getHeight() - viewportBounds.getHeight());
-                       
+        
+       
         // calculate adjustment of scroll position (pixels)
         Point2D adjustment = imageView.getLocalToParentTransform().deltaTransform(point.multiply(scale - 1));
+        
+        System.out.println(point.multiply(scale - 1));
+        System.out.println("l "+point);
         
         // do the resizing
         imageView.setScaleX(scale * imageView.getScaleX());
