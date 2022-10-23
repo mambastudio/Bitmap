@@ -7,17 +7,14 @@ package bitmap.display.gallery;
 
 import static bitmap.display.gallery.GalleryCanvas.ImageType.BMP;
 import static bitmap.display.gallery.GalleryCanvas.ImageType.GIF;
-import static bitmap.display.gallery.GalleryCanvas.ImageType.HDR;
 import static bitmap.display.gallery.GalleryCanvas.ImageType.JPG;
 import static bitmap.display.gallery.GalleryCanvas.ImageType.PNG;
 import bitmap.display.gallery.util.RowContainer;
 import bitmap.display.gallery.util.ImageContainer;
-import static java.lang.Math.abs;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;

@@ -6,7 +6,7 @@
 package example;
 
 import bitmap.display.gallery.HDRImageLoaderFactory;
-import bitmap.display.gallery.util.ImageMetaData;
+import bitmap.ImageMetaData;
 import bitmap.reader.HDRBitmapReader;
 import java.io.BufferedInputStream;
 import java.io.File;
