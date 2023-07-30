@@ -34,7 +34,7 @@ public class CanvasPanelController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        Path rootFolder = FileSystems.getDefault().getPath("C:\\Users\\user\\Pictures\\Irenne");
+        Path rootFolder = FileSystems.getDefault().getPath("C:\\Users\\user\\Pictures\\Sheila");
         final List<Path> subfolders = getSubfolders(rootFolder).parallelStream().filter(file -> file.toString().endsWith("jpg")).sequential().collect(Collectors.toList());
         
         CanvasPanel canvas = CanvasPanel.createCanvasPanel(subfolders);

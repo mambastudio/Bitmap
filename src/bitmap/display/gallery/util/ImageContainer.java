@@ -5,6 +5,7 @@
  */
 package bitmap.display.gallery.util;
 
+import bitmap.ImageMetaData;
 import static bitmap.display.gallery.util.ThreadPoolTask.pool;
 import java.lang.ref.SoftReference;
 import java.net.MalformedURLException;

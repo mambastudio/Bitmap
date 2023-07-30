@@ -5,7 +5,7 @@
  */
 package bitmap.display.gallery.panel;
 
-import bitmap.display.gallery.util.ImageMetaData;
+import bitmap.ImageMetaData;
 import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
