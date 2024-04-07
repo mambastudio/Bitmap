@@ -149,4 +149,9 @@ public class BitmapARGB implements BitmapInterface
         if(color.length >= data.length)
             data = color;
     }
+    
+    public int[] getData()
+    {
+        return data;
+    }
 }
